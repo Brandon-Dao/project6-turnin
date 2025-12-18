@@ -1,6 +1,8 @@
 package com.example.aggregator.client;
 
 import com.example.aggregator.model.Entry;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -28,6 +30,16 @@ public class AggregatorRestClient {
         return result;
     }
 
+    public List<Entry> getWordsEndingWith(String value) {
+        String dictionaryBaseUrl = new String();
+        String uri = dictionaryBaseUrl + "/getWordsEndingWith/" + value;
+        ResponseEntity<List<Entry>> response =
+                restTemplate.exchange(uri,
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<Entry>>() {});
+        return response.getBody();
+    }
 
     public List<Entry> getWordsStartingWith(String chars) {
 

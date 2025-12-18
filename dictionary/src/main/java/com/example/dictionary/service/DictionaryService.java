@@ -60,5 +60,9 @@ public class DictionaryService {
                 .map(entry -> new Entry(entry.getKey(), entry.getValue()))
                 .toList();
     }
+
+    public List<Entry> getWordsEndingWith(String value) {
+        return List.of();
+    }
 }
 
